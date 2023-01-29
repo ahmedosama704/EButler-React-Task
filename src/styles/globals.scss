@@ -1,0 +1,273 @@
+@use '../styles/mixin.scss' as mixin;
+@use '../styles/Colors.scss' as Colors;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+html {
+  scroll-behavior: smooth;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+* {
+  outline: 0 !important;
+  box-sizing: border-box;
+}
+
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: none;
+  outline: 0;
+}
+
+body {
+  background-color: Colors.$lightOffWhite;
+  line-height: 1.5;
+  position: relative;
+  height: 100%;
+  font-weight: normal;
+  float: left;
+  width: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: 'Poppins', sans-serif;
+  &.noScroll {
+    @media (max-width: 767.98px) {
+      overflow: hidden !important;
+      position: fixed;
+    }
+  }
+}
+
+button {
+  text-transform: capitalize;
+  background: transparent;
+  outline: none !important;
+  border-color: transparent;
+  cursor: pointer;
+  cursor: pointer;
+  border-radius: 9px;
+  background: Colors.$mainColor1;
+  padding: 15px 20px;
+  width: 100%;
+  margin: 20px 0px;
+  color: #fff;
+  transition: all 1s;
+  min-height: 50px;
+  position: relative;
+
+  @include mixin.for-phone-only {
+    font-size: 5vw;
+  }
+
+  &:hover,
+  &:active {
+    background: Colors.$mainColor2;
+  }
+}
+
+input {
+  width: 100%;
+  border-radius: 9px;
+  padding: 15px 10px;
+  margin: 10px 0px;
+  border: 0px;
+}
+h1 {
+  font-size: 4.4vw;
+  color: Colors.$mainColor1;
+  margin: 10px 0px;
+
+  @include mixin.for-phone-only {
+    font-size: 8vw;
+  }
+}
+h2 {
+  font-size: 2.647vw;
+  color: Colors.$mainColor1;
+  margin: 10px 0px;
+
+  @include mixin.for-phone-only {
+    font-size: 7vw;
+  }
+}
+
+h3 {
+  font-size: 2.574vw;
+  margin: 10px 0px;
+
+  @include mixin.for-phone-only {
+    font-size: 6vw;
+  }
+}
+
+h4 {
+  font-size: 1.691vw;
+  margin: 10px 0px;
+
+  @include mixin.for-phone-only {
+    font-size: 5vw;
+  }
+}
+
+h5 {
+  font-size: 1.25vw;
+  margin: 10px 0px;
+  font-weight: 400;
+
+  @include mixin.for-phone-only {
+    font-size: 4.4vw;
+  }
+}
+
+h6 {
+  font-size: 0.9vw;
+  margin: 10px 0px;
+  font-weight: 400;
+
+  @include mixin.for-phone-only {
+    font-size: 3vw;
+  }
+}
+
+p {
+  font-size: 1.32vw;
+  @include mixin.for-phone-only {
+    font-size: 3.5vw;
+  }
+}
+
+a {
+  text-decoration: initial;
+  font-size: 1.32vw;
+  @include mixin.for-phone-only {
+    font-size: 4vw;
+  }
+}
+
+button:focus,
+a:focus {
+  outline: none;
+  box-shadow: initial !important;
+}
+
+section {
+  float: left;
+  width: 100%;
+}
+
+img {
+  max-width: 100%;
+}
+
+.no_padding {
+  padding: 0 !important;
+}
+
+.mb20 {
+  margin-bottom: 20px !important;
+}
+
+.mb30 {
+  margin-bottom: 30px !important;
+}
+
+.mb40 {
+  margin-bottom: 40px !important;
+}
+
+.mt40 {
+  margin-top: 40px !important;
+
+  @include mixin.for-phone-only {
+    margin-top: 20px !important;
+    margin-bottom: 0;
+  }
+}
+
+.mt20 {
+  margin-top: 20px !important;
+}
+
+.relative {
+  position: relative;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+//
+// /* Let's get this party started */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  opacity: 0.5;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(173, 173, 173, 0.9);
+}
+.flexDev {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+.center {
+  text-align: center;
+}
+.flexContentCenter {
+  justify-content: center;
+  width: 100% !important;
+}
+.alert {
+  color: red;
+  position: absolute;
+}
+.validation {
+  color: red;
+  margin: 5px 10px;
+}
+.mainPage {
+  display: flex;
+}
+
+.loginPage {
+  img {
+    max-height: 100vh;
+    object-fit: cover;
+    width: 50vw;
+    @include mixin.for-phone-only {
+      display: none;
+    }
+  }
+}
+
+.notFound {
+  img {
+    max-height: 70vh;
+    display: table;
+    margin: 50px auto;
+  }
+}

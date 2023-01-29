@@ -1,0 +1,48 @@
+@use '../../../styles/mixin.scss' as mixin;
+@use '../../../styles/Colors.scss' as Colors;
+.table {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 100%;
+  float: left;
+  border-radius: 9px;
+  .tableRow {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    margin: 10px 0px;
+    &:last-child {
+      border-bottom: 0px solid #ccc;
+      margin-bottom: 0px;
+    }
+    > div {
+      display: flex;
+      align-items: center;
+    }
+    > div:nth-child(1) {
+      max-width: 10%;
+    }
+    > div:nth-child(2) {
+      min-width: 30%;
+      h5 {
+        color: Colors.$mainColor2;
+        font-weight: 700;
+      }
+    }
+    .actionBtns {
+      display: flex;
+      justify-content: space-between;
+      min-width: 30%;
+      button {
+        margin: 0px 10%;
+        padding: 0px;
+        min-height: 40px;
+        line-height: 40px;
+      }
+      .delete {
+        background-color: red;
+      }
+    }
+  }
+}

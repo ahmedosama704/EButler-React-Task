@@ -1,0 +1,40 @@
+@use '../styles/mixin.scss' as mixin;
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+.arabicVersion {
+  //Font Face
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+
+  header,
+  footer,
+  .MuiGrid-root.MuiGrid-container,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  a,
+  ul,
+  button,
+  input,
+  select,
+  textarea,
+  label {
+    direction: rtl;
+  }
+  label {
+    left: initial;
+    right: 0px;
+  }
+  input,
+  select,
+  textarea,
+  label {
+    font-family: 'Cairo', sans-serif;
+  }
+  .languageBtn {
+    flex-direction: row-reverse;
+  }
+}

@@ -1,0 +1,52 @@
+@use '../../styles/mixin.scss' as mixin;
+@use '../../styles/Colors.scss' as Colors;
+
+.header {
+  button {
+    max-width: 120px;
+    border: 1px solid #888;
+    color: Colors.$mainColor2;
+    background-color: transparent;
+    margin: 20px 50px;
+    &:hover {
+      background-color: Colors.$mainColor2;
+      color: #fff;
+    }
+  }
+  .sideNav {
+    position: fixed;
+    width: 20vw;
+    height: 100vh;
+    background-color: Colors.$mainColor1;
+    color: #fff;
+    top: 0px;
+    right: 0px;
+    z-index: 9;
+    @include mixin.for-phone-only {
+      font-size: 5vw;
+    }
+    > div {
+      a {
+        width: 100%;
+        color: #fff;
+        float: left;
+        padding: 10px 20px;
+        border-bottom: 1px solid rgb(255 255 255 / 42%);
+      }
+      div {
+        float: left;
+        width: 100%;
+        a {
+          background-color: transparent;
+          border-radius: 0px;
+          margin: 0px;
+          font-size: initial;
+          display: block;
+          align-items: initial;
+          margin: initial;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
