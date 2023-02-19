@@ -1,4 +1,4 @@
-describe('Register form test', () => {
+describe('Login form test', () => {
   it('check login function working well', () => {
     cy.visit('http://localhost:3000/login');
     cy.get('[ data-cy="inputEmail"]').type('user1@gmail.com');

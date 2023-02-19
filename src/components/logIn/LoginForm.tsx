@@ -33,35 +33,41 @@ const LoginForm: React.FC<LoginTypes> = () => {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const { data: users } = useQuery('users', getUsers);
+    console.log('users :', users);
     const handleSubmit = (e: any) => {
         e.preventDefault();
         if (!isLoading) {
             if (email.length > 7) {
                 if (password.length > 3) {
                     setIsLoading(true);
-                    users && users.filter((item: userType) => {
-                        if (item.email == email) {
-                            if (item.password == password) {
-                                setMessage("Success");
-                                setTimeout(() => {
-                                    setIsLogged(true);
-                                    localStorage.setItem('userData', JSON.stringify(true));
-                                    setIsLoading(false);
-                                    navigate("/");
-                                }, 1000)
-                            } else {
-                                setTimeout(() => {
-                                    setIsLoading(false);
-                                }, 1000)
-                                setMessage("Wrong Password")
-                            }
+                    const existingUser = users && users.filter((item: userType) => {
+                        if (item.email === email) {
+                            return (item)
+                        }
+                    });
+                    console.log('existingUser :', existingUser[0]);
+                    if (existingUser[0] !== undefined && existingUser[0].email === email) {
+                        if (existingUser[0].password == password) {
+                            setMessage("Success");
+                            setTimeout(() => {
+                                setIsLogged(true);
+                                localStorage.setItem('userData', JSON.stringify(true));
+                                setIsLoading(false);
+                                navigate("/");
+                            }, 1000)
                         } else {
                             setTimeout(() => {
                                 setIsLoading(false);
                             }, 1000)
-                            setMessage("Wrong Email")
+                            setMessage("Wrong Password")
                         }
-                    })
+                    } else {
+                        setTimeout(() => {
+                            setIsLoading(false);
+                        }, 1000)
+                        setMessage("Wrong Email")
+                    }
+
                 } else {
                     setMessage(data && data.insertPassword)
                 }
