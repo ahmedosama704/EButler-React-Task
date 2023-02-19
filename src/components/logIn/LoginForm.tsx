@@ -77,12 +77,12 @@ const LoginForm: React.FC<LoginTypes> = () => {
                 <h2> {data.title}</h2>
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <input type="email" name="email" placeholder={data.email} value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <input data-cy="inputEmail" type="email" name="email" placeholder={data.email} value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
                     <div>
-                        <input type="password" name="password" placeholder={data.password} value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <input data-cy="inputPassword" type="password" name="password" placeholder={data.password} value={password} onChange={(e) => setPassword(e.target.value)} />
                     </div>
-                    <button type="submit" className={isLoading ? Styles.loading : ''}>    {isLoading ? <span /> : 'Login'} </button>
+                    <button data-cy="submitButton" type="submit" className={isLoading ? Styles.loading : ''}>    {isLoading ? <span /> : 'Login'} </button>
                     <h5> {data.goToRegister} <Link to="/register" className="link">
                         {data.register}
                     </Link></h5>

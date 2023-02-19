@@ -1,8 +1,8 @@
 import React from 'react'
-import LoginForm from './components/logIn/LoginForm'
+import LoginForm from '../../components/logIn/LoginForm'
 
 function Login() {
-    const logImg: string = '/images/login.jpg';
+    const logImg: string = './images/login.jpg';
 
     return (
         <div className='flexDev loginPage'>

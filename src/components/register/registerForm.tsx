@@ -3,9 +3,8 @@ import Styles from "./registerForm.module.scss";
 import { AppContext } from '../../context/AppContext';
 import { useNavigate, Link } from "react-router-dom";
 import ChangeLanguage from '../shared/changeLanguage/changeLanguage';
-
-import { useQuery, useMutation, useQueryClient } from 'react-query';
-import { getUsers, addUser } from '../../constants/usersApi';
+import { useMutation, useQueryClient } from 'react-query';
+import { addUser } from '../../constants/usersApi';
 
 
 type DataType = {
@@ -35,12 +34,9 @@ type FromData = {
     password: string;
     confirmPassword: string;
 }
-interface ErrorMessageType {
-    [key: string]: any
-}
 
 const RegisterForm = () => {
-    const { content, updateUsers, setUpdateUsers } = useContext(AppContext);
+    const { content } = useContext(AppContext);
     const data: DataType = content.register;
     const [message, setMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -60,7 +56,6 @@ const RegisterForm = () => {
     const [errorConfirmPassword, setErrorConfirmPassword] = useState<string>('');
 
     const webQueryClient = useQueryClient();
-    const { data: users } = useQuery('users', getUsers);
 
     const addMutation = useMutation(addUser, {
         onSuccess: () => {
@@ -112,6 +107,7 @@ const RegisterForm = () => {
                 password: formData.password,
             });
             setTimeout(() => {
+                setMessage("Success")
                 setIsLoading(false);
                 navigate("/login");
             }, 1000)
@@ -128,23 +124,23 @@ const RegisterForm = () => {
                 <h2> {data.title}</h2>
                 <form onSubmit={handleSubmit}>
 
-                    <input type="text" placeholder={data.Name} name="name" value={formData.name} onChange={handleChange} />
-                    {errorName && <h6 className='validation'> {errorName} </h6>}
+                    <input data-cy="testUserName" type="text" placeholder={data.Name} name="name" value={formData.name} onChange={handleChange} />
+                    {errorName && <h6 data-cy="validateName" className='validation'> {errorName} </h6>}
 
-                    <input type="email" placeholder={data.email} name="email" value={formData.email} onChange={handleChange} />
-                    {errorEmail && <h6 className='validation'> {errorEmail}</h6>}
+                    <input data-cy="testEmail" type="email" placeholder={data.email} name="email" value={formData.email} onChange={handleChange} />
+                    {errorEmail && <h6 data-cy="validateEmail" className='validation'> {errorEmail}</h6>}
 
-                    <input type="tel" placeholder={data.phone} name="phone" value={formData.phone} onChange={handleChange} />
-                    {errorPhone && <h6 className='validation'> {errorPhone}</h6>}
+                    <input data-cy="testPhone" type="tel" placeholder={data.phone} name="phone" value={formData.phone} onChange={handleChange} />
+                    {errorPhone && <h6 data-cy="validatePhone" className='validation'> {errorPhone}</h6>}
 
-                    <input type="password" placeholder={data.password} name="password" value={formData.password} onChange={handleChange} />
-                    {errorPassword && <h6 className='validation'> {errorPassword}</h6>}
+                    <input data-cy="testPassword" type="password" placeholder={data.password} name="password" value={formData.password} onChange={handleChange} />
+                    {errorPassword && <h6 data-cy="validatePassword" className='validation'> {errorPassword}</h6>}
 
-                    <input type="password" placeholder={data.confirmPassword} name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} />
-                    {errorConfirmPassword && <h6 className='validation'> {errorConfirmPassword}</h6>}
+                    <input data-cy="testConfirmPassword" type="password" placeholder={data.confirmPassword} name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} />
+                    {errorConfirmPassword && <h6 data-cy="validateConfirmPassword" className='validation'> {errorConfirmPassword}</h6>}
 
-                    <button type="submit" className={isLoading ? Styles.loading : ''}>    {isLoading ? <span /> : data.title} </button>
-                    <h5> {data.alreadyUser} <Link to="/login" className="link">
+                    <button data-cy="submitButton" type="submit" className={isLoading ? Styles.loading : ''}>    {isLoading ? <span /> : data.title} </button>
+                    <h5 > {data.alreadyUser} <Link to="/login" className="link">
                         {data.login}
                     </Link></h5>
                     <h6 className='alert'> {message} </h6>

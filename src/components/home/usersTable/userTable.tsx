@@ -1,10 +1,9 @@
 import React, { useContext } from 'react'
 import Styles from './userTable.module.scss';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
-import { getUsers, updateUser, deleteUser, addUser } from '../../../constants/usersApi';
+import { getUsers, deleteUser } from '../../../constants/usersApi';
 import { AppContext } from '../../../context/AppContext';
 interface usersTypes {
-    usersData: UserType[];
     setEditUser: number | any
 }
 interface UserType {
@@ -18,13 +17,14 @@ interface UserType {
 
 
 
-const UserTable: React.FC<usersTypes> = ({ setEditUser, usersData }) => {
+const UserTable: React.FC<usersTypes> = ({ setEditUser }) => {
     const { language } = useContext(AppContext);
     const webQueryClient = useQueryClient();
     const {
         isLoading,
         data: users
     } = useQuery('users', getUsers);
+    const usersData: UserType[] = users;
     const deleteMutation = useMutation(deleteUser, {
         onSuccess: () => {
             webQueryClient.invalidateQueries("users")

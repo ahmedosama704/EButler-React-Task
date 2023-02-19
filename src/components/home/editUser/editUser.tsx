@@ -3,7 +3,6 @@ import Styles from './editUser.module.scss';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { getUsers, updateUser, } from '../../../constants/usersApi';
 import { AppContext } from '../../../context/AppContext';
-import { useNavigate, Link } from "react-router-dom";
 
 interface EditUserTypes {
     userId: number | null;
@@ -66,7 +65,6 @@ const EditUser = (props: EditUserTypes) => {
         confirmPassword: userData.password,
         id: userData.id,
     });
-    const navigate = useNavigate();
 
     const webQueryClient = useQueryClient();
     const {

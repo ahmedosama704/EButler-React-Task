@@ -6,6 +6,8 @@ export const MainProvider = ({ children }) => {
   const [isLogged, setIsLogged] = useState(false);
   const [openSideNav, setOpenSideNav] = useState('close');
   const [language, setLanguage] = useState('en');
+  const [websiteLoading, setWebsiteLoading] = useState(true);
+  console.log('websiteLOading :', websiteLoading);
   const [content, setContent] = useState(language == 'en' ? en : ar);
   useEffect(() => {
     if (language == 'en') {
@@ -21,11 +23,11 @@ export const MainProvider = ({ children }) => {
   };
   const getNavData = () => {
     const data = localStorage.getItem('sideNav');
-    setOpenSideNav(data);
+    setOpenSideNav(data !== null ? data : 'close');
   };
   const getUserLanguage = () => {
     const data = localStorage.getItem('userLang');
-    setLanguage(data);
+    setLanguage(data !== null ? data : 'en');
   };
   useEffect(() => {
     getUserData();
@@ -33,6 +35,9 @@ export const MainProvider = ({ children }) => {
   useEffect(() => {
     getNavData();
     getUserLanguage();
+    setTimeout(() => {
+      setWebsiteLoading(false);
+    }, 1000);
   }, []);
 
   return (
@@ -45,6 +50,7 @@ export const MainProvider = ({ children }) => {
         setLanguage,
         openSideNav,
         setOpenSideNav,
+        websiteLoading,
       }}
     >
       {children}
